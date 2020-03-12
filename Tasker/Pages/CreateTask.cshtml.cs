@@ -9,6 +9,11 @@ namespace Tasker.Pages
 {
     public class CreateTaskModel : PageModel
     {
+        private readonly ApplicationDbContext _context;
+        public CreateTaskModel(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public void OnGet()
         {
 
@@ -19,6 +24,18 @@ namespace Tasker.Pages
 
         public IActionResult OnPost()
         {
+            var taskToAdd = new Task
+            {
+                Id = NewTask.Id,
+                Title = NewTask.Title,
+                Description = NewTask.Description,
+                Priority = NewTask.Priority
+            };
+
+            _context.Tasks.Add(taskToAdd);
+
+            _context.SaveChanges();
+
             return RedirectToPage("Index");
         }
     }
