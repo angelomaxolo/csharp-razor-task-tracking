@@ -24,18 +24,8 @@ namespace Tasker.Pages
 
         public IActionResult OnPost()
         {
-            var taskToAdd = new Task
-            {
-                Id = NewTask.Id,
-                Title = NewTask.Title,
-                Description = NewTask.Description,
-                Priority = NewTask.Priority
-            };
-
-            _context.Tasks.Add(taskToAdd);
-
+            _context.Tasks.Add(NewTask);
             _context.SaveChanges();
-
             return RedirectToPage("Index");
         }
     }
