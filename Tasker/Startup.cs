@@ -26,8 +26,7 @@ namespace Tasker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseInMemoryDatabase("Tasker"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("Tasker"));
 
         }
 
